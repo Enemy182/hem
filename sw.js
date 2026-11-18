@@ -2,7 +2,7 @@
 // visita y se actualiza sola cuando hay versión nueva publicada.
 //
 // El script de compilación (build_todo.ps1) reemplaza estas dos líneas:
-const VERSION = '2.1.7+10-20261118141251';
+const VERSION = '2.1.7+10-20261118152402';
 const PRECACHE = [
   '.nojekyll',
   'favicon.png',
@@ -29,6 +29,7 @@ const PRECACHE = [
   'canvaskit/wimp.js',
   'canvaskit/wimp.js.symbols',
   'canvaskit/wimp.wasm',
+  'download/index.html',
   'icons/apple-touch-icon.png',
   'icons/Icon-192.png',
   'icons/Icon-512.png',
