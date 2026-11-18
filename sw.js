@@ -2,7 +2,7 @@
 // visita y se actualiza sola cuando hay versión nueva publicada.
 //
 // El script de compilación (build_todo.ps1) reemplaza estas dos líneas:
-const VERSION = '2.2.1+14-20261118163958';
+const VERSION = '2.2.2+15-20261118170805';
 const PRECACHE = [
   '.nojekyll',
   'favicon.png',
