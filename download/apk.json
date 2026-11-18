@@ -1,0 +1,13 @@
+{
+    "date":  "2026-11-18",
+    "apk32":  {
+                  "mb":  24.4,
+                  "file":  "HEM-32bits.apk"
+              },
+    "apk":  {
+                "mb":  25.9,
+                "file":  "HEM.apk"
+            },
+    "build":  "2.2.0+13",
+    "version":  "2.2.0"
+}

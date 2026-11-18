@@ -2,7 +2,7 @@
 // visita y se actualiza sola cuando hay versión nueva publicada.
 //
 // El script de compilación (build_todo.ps1) reemplaza estas dos líneas:
-const VERSION = '2.1.9+12-20261118154515';
+const VERSION = '2.2.0+13-20261118161409';
 const PRECACHE = [
   '.nojekyll',
   'favicon.png',
@@ -21,6 +21,7 @@ const PRECACHE = [
   'assets/fonts/MaterialIcons-Regular.otf',
   'assets/fonts/fallback/Roboto-Regular.ttf',
   'assets/packages/cupertino_icons/assets/CupertinoIcons.ttf',
+  'assets/packages/flutter_local_notifications_web/web/notifications_service_worker.js',
   'assets/shaders/ink_sparkle.frag',
   'assets/shaders/stretch_effect.frag',
   'canvaskit/canvaskit.js',
@@ -86,6 +87,8 @@ self.addEventListener('fetch', (event) => {
 
   // La consulta de la hora oficial nunca sale de la caché.
   if (url.pathname.endsWith('version.json')) return;
+  // Los APK (pesados) y su info van siempre directo, sin caché ni límite.
+  if (/\.apk$|apk\.json$/.test(url.pathname)) return;
 
   // Tipografías de Google: se guardan la primera vez y se reusan.
   if (url.hostname === 'fonts.gstatic.com' || url.hostname === 'fonts.googleapis.com') {

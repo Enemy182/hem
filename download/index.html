@@ -105,12 +105,21 @@
       <!-- Android -->
       <div id="android" class="card hidden">
         <h2>Instalala en tu Android</h2>
-        <button id="install-btn" class="btn primary hidden">Instalar HEM</button>
-        <ol id="android-steps">
-          <li><span>Abrí esta página en <b>Chrome</b>.</span></li>
-          <li><span>Tocá el menú <b>⋮</b> (arriba a la derecha).</span></li>
-          <li><span>Elegí <b>"Instalar app"</b> o <b>"Agregar a pantalla principal"</b>.</span></li>
+        <a id="apk-btn" class="btn primary" href="HEM.apk" download>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <span id="apk-label">Descargar la app (APK)</span>
+        </a>
+        <ol style="margin-top:12px">
+          <li><span>Tocá <b>Descargar</b> y esperá que termine.</span></li>
+          <li><span>Abrí el archivo <b>HEM.apk</b> (en la notificación o en <b>Descargas</b>).</span></li>
+          <li><span>Si te pide permiso para <b>"instalar apps desconocidas"</b>, activalo
+            para tu navegador y tocá <b>Instalar</b>.</span></li>
         </ol>
+        <p class="note">
+          ¿No se instala? Probá la <a id="apk32" href="HEM-32bits.apk" download style="color:var(--violet)">versión para celulares más viejos</a>.
+          Es la app oficial de EnemyDev; Android avisa porque no viene de Play Store.
+        </p>
+        <button id="install-btn" class="btn ghost hidden">O instalala como web app (sin descargar)</button>
         <a class="btn ghost" href="../">O usala desde el navegador</a>
       </div>
     </div>
@@ -167,8 +176,12 @@
       window.addEventListener('beforeinstallprompt', function (e) {
         e.preventDefault(); deferred = e;
         $('install-btn').classList.remove('hidden');
-        $('android-steps').classList.add('hidden');
       });
+
+      // Versión y tamaño del APK publicado.
+      fetch('apk.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+        $('apk-label').textContent = 'Descargar HEM ' + j.version + ' (' + String(j.apk.mb).replace('.', ',') + ' MB)';
+      }).catch(function () {});
       $('install-btn').onclick = function () {
         if (!deferred) return;
         deferred.prompt();
